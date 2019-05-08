@@ -21,4 +21,10 @@
         <module>nexmo-spring-boot-autoconfigure</module>
         <module>nexmo-spring-boot-starter</module>
     </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <nexmo.version>4.3.0</nexmo.version>
+        <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+    </properties>
 </project>
