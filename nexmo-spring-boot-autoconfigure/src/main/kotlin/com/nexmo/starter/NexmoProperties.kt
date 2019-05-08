@@ -19,22 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo;
+package com.nexmo.starter
 
-import com.nexmo.client.NexmoClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.context.properties.ConfigurationProperties
 
-@Configuration
-@ConditionalOnClass(NexmoClient.class)
-@EnableConfigurationProperties(NexmoProperties.class)
-public class NexmoAutoConfiguration {
-    private NexmoProperties nexmoProperties;
-
-    @Autowired
-    NexmoAutoConfiguration(NexmoProperties nexmoProperties) {
-        this.nexmoProperties = nexmoProperties;
-    }
-}
+@ConfigurationProperties(prefix = "nexmo.creds")
+data class NexmoCredentialsProperties(
+    var apiKey: String = "",
+    var secret: String = "",
+    var applicationId: String = "",
+    var privateKeyPath: String = "",
+    var privateKeyContents: String = ""
+)
