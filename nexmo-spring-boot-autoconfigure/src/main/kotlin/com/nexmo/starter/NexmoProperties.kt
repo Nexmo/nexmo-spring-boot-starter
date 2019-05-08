@@ -25,9 +25,24 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties(prefix = "nexmo.creds")
 data class NexmoCredentialsProperties(
+    /**
+     * Nexmo API Key
+     */
     var apiKey: String = "",
+    /**
+     * Nexmo API Secret
+     */
     var secret: String = "",
+    /**
+     * Nexmo Application ID
+     */
     var applicationId: String = "",
+    /**
+     * The String path to your Nexmo Private Key
+     */
     var privateKeyPath: String = "",
+    /**
+     * The contents of you Nexmo Private Key
+     */
     var privateKeyContents: String = ""
 )
