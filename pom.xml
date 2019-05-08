@@ -20,6 +20,7 @@
     <modules>
         <module>nexmo-spring-boot-autoconfigure</module>
         <module>nexmo-spring-boot-starter</module>
+        <module>nexmo-spring-boot-test-application</module>
     </modules>
 
     <properties>
