@@ -13,5 +13,15 @@
     <name>nexmo-spring-boot-starter</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <dependency>
+            <groupId>com.nexmo</groupId>
+            <artifactId>client</artifactId>
+            <version>${nexmo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nexmo</groupId>
+            <artifactId>nexmo-spring-boot-autoconfigure</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
