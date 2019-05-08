@@ -22,6 +22,17 @@
 package com.nexmo.starter
 
 import com.nexmo.client.NexmoClient
+import com.nexmo.client.account.AccountClient
+import com.nexmo.client.applications.ApplicationClient
+import com.nexmo.client.conversion.ConversionClient
+import com.nexmo.client.insight.InsightClient
+import com.nexmo.client.numbers.NumbersClient
+import com.nexmo.client.redact.RedactClient
+import com.nexmo.client.sms.SmsClient
+import com.nexmo.client.sns.SnsClient
+import com.nexmo.client.verify.VerifyClient
+import com.nexmo.client.voice.VoiceClient
+import org.jetbrains.annotations.NotNull
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
@@ -29,6 +40,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Lazy
 
 @Configuration
 @ConditionalOnClass(NexmoClient::class)
@@ -40,6 +52,8 @@ open class NexmoAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
     open fun nexmoBuilder(): NexmoClient.Builder {
         if (nexmoProperties.privateKeyContents.isNotBlank() && nexmoProperties.privateKeyContents.isNotBlank()) {
             throw IllegalArgumentException("Found both private key path and private key contents. Only one option can be used at a time.")
@@ -57,11 +71,87 @@ open class NexmoAutoConfiguration {
             builder.privateKeyPath(nexmoProperties.privateKeyPath)
         }
 
+        if (nexmoProperties.applicationId.isNotBlank()) {
+            builder.applicationId(nexmoProperties.applicationId)
+        }
+
         return builder
     }
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
     open fun nexmoClient(builder: NexmoClient.Builder): NexmoClient = builder.build()
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun accountClient(nexmoClient: NexmoClient): AccountClient = nexmoClient.accountClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun applicationClient(nexmoClient: NexmoClient): ApplicationClient = nexmoClient.applicationClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun conversionClient(nexmoClient: NexmoClient): ConversionClient = nexmoClient.conversionClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun insightClient(nexmoClient: NexmoClient): InsightClient = nexmoClient.insightClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun numbersClient(nexmoClient: NexmoClient): NumbersClient = nexmoClient.numbersClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun redactClient(nexmoClient: NexmoClient): RedactClient = nexmoClient.redactClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun smsClient(nexmoClient: NexmoClient): SmsClient = nexmoClient.smsClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun snsClient(nexmoClient: NexmoClient): SnsClient = nexmoClient.snsClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @Lazy
+    @NotNull
+    open fun verifyClient(nexmoClient: NexmoClient): VerifyClient = nexmoClient.verifyClient
+
+    @Bean
+    @ConditionalOnMissingBean
+    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret", "application-id"])
+    @Lazy
+    @NotNull
+    open fun voiceClient(nexmoClient: NexmoClient): VoiceClient = nexmoClient.voiceClient
 }
