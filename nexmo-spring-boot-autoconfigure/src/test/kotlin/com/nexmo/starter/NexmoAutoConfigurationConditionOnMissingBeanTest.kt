@@ -41,15 +41,15 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner
 import org.springframework.test.util.ReflectionTestUtils
 
 class NexmoAutoConfigurationConditionOnMissingBeanTest {
+    val contextRunner = ApplicationContextRunner().withConfiguration(
+        AutoConfigurations.of(NexmoAutoConfiguration::class.java)
+    )
+
     @Test
     fun `when user defines a builder then only that builder is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithNexmoClientBuilder::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
@@ -61,13 +61,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines a nexmo client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithNexmoClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(NexmoClient::class.java)
@@ -79,13 +75,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines an account client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithAccountClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(AccountClient::class.java)
@@ -97,13 +89,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines an application client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithApplicationClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(ApplicationClient::class.java)
@@ -115,13 +103,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines a conversion client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithConversionClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(ConversionClient::class.java)
@@ -133,13 +117,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines an insight client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithInsightClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(InsightClient::class.java)
@@ -151,13 +131,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines a numbers client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithNumbersClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(NumbersClient::class.java)
@@ -169,13 +145,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines a redact client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithRedactClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(RedactClient::class.java)
@@ -187,13 +159,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines an sms client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithSmsClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(SmsClient::class.java)
@@ -205,13 +173,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines an sns client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithSnsClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(SnsClient::class.java)
@@ -223,13 +187,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines a verify client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithVerifyClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(VerifyClient::class.java)
@@ -241,13 +201,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines a voice client then only that client is in the container`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithVoiceClient::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret", "nexmo.creds.application-id=id"
         ).run {
             assertThat(it).hasSingleBean(VoiceClient::class.java)
@@ -259,13 +215,9 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
 
     @Test
     fun `when user defines a builder then that builder is used to build the Nexmo Client`() {
-        val contextRunner = ApplicationContextRunner().withConfiguration(
-            AutoConfigurations.of(NexmoAutoConfiguration::class.java)
-        ).withUserConfiguration(
+        contextRunner.withUserConfiguration(
             WithNexmoClientBuilderHavingCustomBaseUri::class.java
-        )
-
-        contextRunner.withPropertyValues(
+        ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
             val client = it.getBean(NexmoClient::class.java)
