@@ -55,7 +55,7 @@ open class NexmoAutoConfiguration {
     @Lazy
     @NotNull
     open fun nexmoBuilder(): NexmoClient.Builder {
-        if (nexmoProperties.privateKeyContents.isNotBlank() && nexmoProperties.privateKeyContents.isNotBlank()) {
+        if (nexmoProperties.privateKeyContents.isNotBlank() && nexmoProperties.privateKeyPath.isNotBlank()) {
             throw IllegalArgumentException("Found both private key path and private key contents. Only one option can be used at a time.")
         }
 
