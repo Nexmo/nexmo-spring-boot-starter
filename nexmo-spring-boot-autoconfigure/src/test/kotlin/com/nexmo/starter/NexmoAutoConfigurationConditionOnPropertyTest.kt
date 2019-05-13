@@ -1,20 +1,3 @@
-import com.nexmo.client.NexmoClient
-import com.nexmo.client.account.AccountClient
-import com.nexmo.client.applications.ApplicationClient
-import com.nexmo.client.conversion.ConversionClient
-import com.nexmo.client.insight.InsightClient
-import com.nexmo.client.numbers.NumbersClient
-import com.nexmo.client.redact.RedactClient
-import com.nexmo.client.sms.SmsClient
-import com.nexmo.client.sns.SnsClient
-import com.nexmo.client.verify.VerifyClient
-import com.nexmo.client.voice.VoiceClient
-import com.nexmo.starter.NexmoAutoConfiguration
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
-import org.springframework.boot.autoconfigure.AutoConfigurations
-import org.springframework.boot.test.context.runner.ApplicationContextRunner
-
 /*
  * Copyright (c) 2011-2019 Nexmo Inc
  *
@@ -36,9 +19,25 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package com.nexmo.starter
 
+import com.nexmo.client.NexmoClient
+import com.nexmo.client.account.AccountClient
+import com.nexmo.client.applications.ApplicationClient
+import com.nexmo.client.conversion.ConversionClient
+import com.nexmo.client.insight.InsightClient
+import com.nexmo.client.numbers.NumbersClient
+import com.nexmo.client.redact.RedactClient
+import com.nexmo.client.sms.SmsClient
+import com.nexmo.client.sns.SnsClient
+import com.nexmo.client.verify.VerifyClient
+import com.nexmo.client.voice.VoiceClient
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.Test
+import org.springframework.boot.autoconfigure.AutoConfigurations
+import org.springframework.boot.test.context.runner.ApplicationContextRunner
 
-class NexmoAutoConfigurationTest {
+class NexmoAutoConfigurationConditionOnPropertyTest {
     val contextRunner = ApplicationContextRunner().withConfiguration(
         AutoConfigurations.of(NexmoAutoConfiguration::class.java)
     )
@@ -368,7 +367,7 @@ class NexmoAutoConfigurationTest {
     }
 
     @Test
-    fun `when api key and secret and application id exists voice client is not registered`() {
+    fun `when api key and secret and application id exists voice client is registered`() {
         contextRunner.withPropertyValues(
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key", "nexmo.creds.application-id=id"
         ).run {
