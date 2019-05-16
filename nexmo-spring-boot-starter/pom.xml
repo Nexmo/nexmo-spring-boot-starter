@@ -11,7 +11,35 @@
     <artifactId>nexmo-spring-boot-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>nexmo-spring-boot-starter</name>
-    <url>http://maven.apache.org</url>
+    <description>Nexmo Spring Boot Starter</description>
+    <url>https://github.com/nexmo/nexmo-spring-boot-starter</url>
+
+    <scm>
+        <connection>scm:git:git@github.com:Nexmo/nexmo-spring-boot-starter</connection>
+        <developerConnection>scm:git:git@github.com:Nexmo/nexmo-spring-boot-starter</developerConnection>
+        <url>https://github.com/Nexmo/nexmo-spring-boot-starter</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://raw.githubusercontent.com/Nexmo/nexmo-spring-boot-starter/master/LICENSE.md</url>
+        </license>
+    </licenses>
+    <organization>
+        <name>Nexmo</name>
+        <url>https://developer.nexmo.com/tools</url>
+    </organization>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Nexmo/nexmo-spring-boot-starter/issues</url>
+    </issueManagement>
+    <developers>
+        <developer>
+            <id>devrel</id>
+            <name>Nexmo Developer Relations Team</name>
+            <email>devrel@nexmo.com</email>
+        </developer>
+    </developers>
     <dependencies>
         <dependency>
             <groupId>com.nexmo</groupId>
@@ -24,4 +52,7 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
 </project>

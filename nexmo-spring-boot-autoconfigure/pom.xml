@@ -3,15 +3,45 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.nexmo</groupId>
         <artifactId>nexmo-starter</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+
     <artifactId>nexmo-spring-boot-autoconfigure</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>nexmo-spring-boot-autoconfigure</name>
-    <url>http://maven.apache.org</url>
+    <description>Spring Boot Auto Configuration for Nexmo</description>
+    <url>https://github.com/nexmo/nexmo-spring-boot-starter</url>
+    <scm>
+        <connection>scm:git:git@github.com:Nexmo/nexmo-spring-boot-starter</connection>
+        <developerConnection>scm:git:git@github.com:Nexmo/nexmo-spring-boot-starter</developerConnection>
+        <url>https://github.com/Nexmo/nexmo-spring-boot-starter</url>
+    </scm>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://raw.githubusercontent.com/Nexmo/nexmo-spring-boot-starter/master/LICENSE.md</url>
+        </license>
+    </licenses>
+    <organization>
+        <name>Nexmo</name>
+        <url>https://developer.nexmo.com/tools</url>
+    </organization>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Nexmo/nexmo-spring-boot-starter/issues</url>
+    </issueManagement>
+    <developers>
+        <developer>
+            <id>devrel</id>
+            <name>Nexmo Developer Relations Team</name>
+            <email>devrel@nexmo.com</email>
+        </developer>
+    </developers>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -110,4 +140,7 @@
             </plugin>
         </plugins>
     </build>
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
 </project>
