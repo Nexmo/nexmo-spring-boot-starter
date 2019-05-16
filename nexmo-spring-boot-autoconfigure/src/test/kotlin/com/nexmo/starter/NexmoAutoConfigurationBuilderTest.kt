@@ -117,4 +117,20 @@ class NexmoAutoConfigurationBuilderTest {
             assertEquals(keyContents, builderKeyContents.toString(Charset.forName("UTF-8")))
         }
     }
+
+    @Test
+    fun `when signature secret is defined then builder has signature secret`() {
+        contextRunner.withPropertyValues(
+            "nexmo.creds.api-key=api-key",
+            "nexmo.creds.secret=secret",
+            "nexmo.creds.signature=signature"
+        ).run {
+            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            // Since the bean is @Lazy, it needs to be requested.
+            val builder = it.getBean("nexmoBuilder")
+            val signature = ReflectionTestUtils.getField(builder, "signatureSecret") as String
+
+            assertEquals("signature", signature)
+        }
+    }
 }

@@ -75,6 +75,10 @@ open class NexmoAutoConfiguration {
             builder.applicationId(nexmoProperties.applicationId)
         }
 
+        if (nexmoProperties.signature.isNotBlank()) {
+            builder.signatureSecret(nexmoProperties.signature)
+        }
+
         return builder
     }
 

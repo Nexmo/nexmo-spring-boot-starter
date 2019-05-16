@@ -44,5 +44,9 @@ data class NexmoCredentialsProperties(
     /**
      * The contents of you Nexmo Private Key
      */
-    var privateKeyContents: String = ""
+    var privateKeyContents: String = "",
+    /**
+     * Nexmo Signature Secret
+     */
+    var signature: String = ""
 )
