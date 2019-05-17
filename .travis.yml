@@ -10,4 +10,4 @@ matrix:
     - jdk: oraclejdk11
       dist: trusty
 
-script: mvn clean verify -Dgpg.skip=true
+script: mvn clean verify
