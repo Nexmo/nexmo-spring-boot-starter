@@ -50,10 +50,6 @@
         <module>nexmo-spring-boot-test-application</module>
     </modules>
 
-    <properties>
-        <maven.deploy.skip>true</maven.deploy.skip>
-    </properties>
-
     <distributionManagement>
         <snapshotRepository>
             <id>nexus-snapshots</id>
