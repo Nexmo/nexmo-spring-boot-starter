@@ -93,7 +93,7 @@ public NexmoClient.Builder customNexmoBuilder() {
 
 ## Customize Nexmo Client Version
 
-By default, the Nexmo Spring Boot Starter will transitively define Nexmo Client to the latest version upon its release. You can override this by adding a dependency on the Nexmo Client, bringing in `4.2.0` for example:
+By default, the Nexmo Spring Boot Starter will transitively define Nexmo Client to the latest version at its release. You can override this by adding a dependency on the Nexmo Client, bringing in `4.2.0` for example:
 
 For Gradle:
 
