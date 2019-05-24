@@ -6,10 +6,10 @@
     <parent>
         <groupId>com.nexmo</groupId>
         <artifactId>nexmo-starter</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
     <artifactId>nexmo-spring-boot-test-application</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>nexmo-spring-boot-test-application</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.nexmo</groupId>
             <artifactId>nexmo-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
         <dependency>
