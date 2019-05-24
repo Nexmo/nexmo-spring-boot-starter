@@ -122,3 +122,4 @@ Bringing in older versions of the supported Nexmo Client, may result in some unf
 | Nexmo Spring Boot Starter | Nexmo Java Client |
 |---|---|
 | v1.0.0 | v4.3.0 |
+| v1.0.1 | v4.3.1 |

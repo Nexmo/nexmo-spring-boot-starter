@@ -112,8 +112,8 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <!--                Maven Central Requires a JavaDoc Jar but this is unnecessary for Kotlin-->
-                        <!--                See: https://vzurczak.wordpress.com/2014/08/01/generate-an-empty-javadoc-jar-file/ -->
+                        <!-- Maven Central Requires a JavaDoc Jar but this is unnecessary for Kotlin -->
+                        <!-- See: https://vzurczak.wordpress.com/2014/08/01/generate-an-empty-javadoc-jar-file/ -->
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jar-plugin</artifactId>
                         <executions>
