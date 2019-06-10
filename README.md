@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.nexmo:nexmo-spring-boot-starter:1.0.1'
+    implementation 'com.nexmo:nexmo-spring-boot-starter:1.1.0'
 }
 ```
 
@@ -25,7 +25,7 @@ For Maven:
 <dependency>
   <groupId>com.nexmo</groupId>
   <artifactId>nexmo-spring-boot-starter</artifactId>
-  <version>1.0.1</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
@@ -123,3 +123,4 @@ Bringing in older versions of the supported Nexmo Client, may result in some unf
 |---|---|
 | v1.0.0 | v4.3.0 |
 | v1.0.1 | v4.3.1 |
+| v1.1.0 | v4.4.0 |
