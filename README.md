@@ -2,6 +2,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.nexmo/nexmo-spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.nexmo%22%20AND%20a:%22nexmo-spring-boot-starter%22)
 [![Build Status](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter.svg?branch=master)](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter)
+[![codecov](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter)
 
 This Spring Boot Starter has been provided to help with integrating the [Nexmo Java SDK](https://github.com/Nexmo/nexmo-java) into your [Spring Boot](https://spring.io/projects/spring-boot) project.
 
