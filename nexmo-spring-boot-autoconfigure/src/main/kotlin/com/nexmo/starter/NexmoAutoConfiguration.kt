@@ -33,7 +33,6 @@ import com.nexmo.client.sns.SnsClient
 import com.nexmo.client.verify.VerifyClient
 import com.nexmo.client.voice.VoiceClient
 import org.jetbrains.annotations.NotNull
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
@@ -45,10 +44,9 @@ import org.springframework.context.annotation.Lazy
 @Configuration
 @ConditionalOnClass(NexmoClient::class)
 @EnableConfigurationProperties(NexmoCredentialsProperties::class)
-open class NexmoAutoConfiguration {
-    @Autowired
-    lateinit var nexmoProperties: NexmoCredentialsProperties
-
+open class NexmoAutoConfiguration(
+    private val nexmoProperties: NexmoCredentialsProperties
+) {
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
