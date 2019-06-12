@@ -36,6 +36,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.springframework.boot.autoconfigure.AutoConfigurations
 import org.springframework.boot.test.context.runner.ApplicationContextRunner
+import kotlin.test.assertNotNull
 
 class NexmoAutoConfigurationConditionOnPropertyTest {
     val contextRunner = ApplicationContextRunner().withConfiguration(
@@ -66,6 +67,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertNotNull(it.getBean(NexmoClient.Builder::class.java))
         }
     }
 
@@ -93,6 +95,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(NexmoClient::class.java)
+            assertNotNull(it.getBean(NexmoClient::class.java))
         }
     }
 
@@ -120,6 +123,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(AccountClient::class.java)
+            assertNotNull(it.getBean(AccountClient::class.java))
         }
     }
 
@@ -147,6 +151,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(ApplicationClient::class.java)
+            assertNotNull(it.getBean(ApplicationClient::class.java))
         }
     }
 
@@ -174,6 +179,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(ConversionClient::class.java)
+            assertNotNull(it.getBean(ConversionClient::class.java))
         }
     }
 
@@ -201,6 +207,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(InsightClient::class.java)
+            assertNotNull(it.getBean(InsightClient::class.java))
         }
     }
 
@@ -228,6 +235,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(NumbersClient::class.java)
+            assertNotNull(it.getBean(NumbersClient::class.java))
         }
     }
 
@@ -255,6 +263,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(RedactClient::class.java)
+            assertNotNull(it.getBean(RedactClient::class.java))
         }
     }
 
@@ -282,6 +291,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(SmsClient::class.java)
+            assertNotNull(it.getBean(SmsClient::class.java))
         }
     }
 
@@ -309,6 +319,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(SnsClient::class.java)
+            assertNotNull(it.getBean(SnsClient::class.java))
         }
     }
 
@@ -336,6 +347,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(VerifyClient::class.java)
+            assertNotNull(it.getBean(VerifyClient::class.java))
         }
     }
 
@@ -367,11 +379,12 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     }
 
     @Test
-    fun `when api key and secret and application id exists voice client is registered`() {
+    fun `when api key and secret and private key and application id exists voice client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key", "nexmo.creds.application-id=id"
+            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key", "nexmo.creds.application-id=id", "nexmo.creds.private-key-path=src/test/resources/testing.key"
         ).run {
             assertThat(it).hasSingleBean(VoiceClient::class.java)
+            assertNotNull(it.getBean(VoiceClient::class.java))
         }
     }
 }
