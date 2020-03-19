@@ -4,6 +4,8 @@
 [![Build Status](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter.svg?branch=master)](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter)
 [![codecov](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter)
 
+<img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
+
 This Spring Boot Starter has been provided to help with integrating the [Nexmo Java SDK](https://github.com/Nexmo/nexmo-java) into your [Spring Boot](https://spring.io/projects/spring-boot) project.
 
 ## Installation
