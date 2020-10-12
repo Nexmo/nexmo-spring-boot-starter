@@ -8,6 +8,12 @@
 
 This Spring Boot Starter has been provided to help with integrating the [Nexmo Java SDK](https://github.com/Nexmo/nexmo-java) into your [Spring Boot](https://spring.io/projects/spring-boot) project.
 
+ * [Installation](#installation)
+ * [Usage](#usage)
+ * [Customizing the `NexmoClient`](#customization)
+ * [Customize Nexmo Client Version](#customization_version)
+ 
+<a name="installation"></a>
 ## Installation
 
 For Gradle:
@@ -32,6 +38,7 @@ For Maven:
 </dependency>
 ```
 
+<a name="usage"></a>
 ## Usage
 
 The Nexmo Spring Boot Starter will automatically configure instances of the `NexmoClient.Builder`, `NexmoClient`, and any of the other sub-clients (`AccountClient`, `VoiceClient`, etc..) once you have provided the required configuration values.
@@ -74,6 +81,7 @@ nexmo.creds.application-id=application-id
 nexmo.creds.private-key-contents=contents-of-the-key
 ```
 
+<a name="customization"></a>
 ### Customizing the `NexmoClient`
 
 By default, the auto configuration will create a `NexmoClient.Builder` using the information provided in your `application.properties`, `application.yml`, or other external configuration source. However, when registering the `NexmoClient` and all of the other sub-clients, the auto configuration can opt to use a pre-registered `NexmoClient.Builder`.
@@ -94,6 +102,7 @@ public NexmoClient.Builder customNexmoBuilder() {
 ```
 > Note that you must include your credentials as shown in this example. This builder completely replaces the automatically configured one.
 
+<a name="customization_version"></a>
 ## Customize Nexmo Client Version
 
 By default, the Nexmo Spring Boot Starter will transitively define Nexmo Client to the latest version at its release. You can override this by adding a dependency on the Nexmo Client, bringing in `4.2.0` for example:
