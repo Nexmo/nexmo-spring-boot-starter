@@ -42,9 +42,9 @@
     </developers>
     <dependencies>
         <dependency>
-            <groupId>com.nexmo</groupId>
+            <groupId>com.vonage</groupId>
             <artifactId>client</artifactId>
-            <version>${nexmo.version}</version>
+            <version>${nexmo.vonage}</version>
         </dependency>
         <dependency>
             <groupId>com.nexmo</groupId>
