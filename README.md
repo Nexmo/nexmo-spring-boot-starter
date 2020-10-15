@@ -119,9 +119,9 @@ For Maven:
 
 ```xml
 <dependency>
-  <groupId>com.nexmo</groupId>
+  <groupId>com.vonage</groupId>
   <artifactId>client</artifactId>
-  <version>4.2.0</version>
+  <version>5.5.0</version>
 </dependency>
 ```
 
@@ -132,3 +132,8 @@ Bringing in older versions of the supported Nexmo Client, may result in some unf
 | v1.0.0 | v4.3.0 |
 | v1.0.1 | v4.3.1 |
 | v1.1.0 | v4.4.0 |
+
+
+| Nexmo Spring Boot Starter | Vonage Java Client |
+|---|---|
+| v2.2.0 | v5.5.0 |
