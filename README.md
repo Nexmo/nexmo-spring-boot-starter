@@ -8,6 +8,11 @@
 
 This Spring Boot Starter has been provided to help with integrating the [Nexmo Java SDK](https://github.com/Nexmo/nexmo-java) into your [Spring Boot](https://spring.io/projects/spring-boot) project.
 
+ * [Installation](#installation)
+ * [Usage](#usage)
+ * [Customizing the NexmoClient](#customizing-the-nexmoclient)
+ * [Customize Nexmo Client Version](#customize-nexmo-client-version)
+ 
 ## Installation
 
 For Gradle:
