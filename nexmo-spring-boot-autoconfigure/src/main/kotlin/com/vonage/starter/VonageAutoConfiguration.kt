@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2019 Nexmo Inc
+ * Copyright (c) 2011-2019 Vonage Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
 import com.vonage.client.VonageClient
 import com.vonage.client.account.AccountClient
@@ -43,38 +43,38 @@ import org.springframework.context.annotation.Lazy
 
 @Configuration
 @ConditionalOnClass(VonageClient::class)
-@EnableConfigurationProperties(NexmoCredentialsProperties::class)
-open class NexmoAutoConfiguration(
-    private val nexmoProperties: NexmoCredentialsProperties
+@EnableConfigurationProperties(VonageCredentialsProperties::class)
+open class VonageAutoConfiguration(
+    private val vonageProperties: VonageCredentialsProperties
 ) {
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun vonageBuilder(): VonageClient.Builder {
-        if (nexmoProperties.privateKeyContents.isNotBlank() && nexmoProperties.privateKeyPath.isNotBlank()) {
+        if (vonageProperties.privateKeyContents.isNotBlank() && vonageProperties.privateKeyPath.isNotBlank()) {
             throw IllegalArgumentException("Found both private key path and private key contents. Only one option can be used at a time.")
         }
 
         val builder = VonageClient.builder()
-            .apiKey(nexmoProperties.apiKey)
-            .apiSecret(nexmoProperties.secret)
+            .apiKey(vonageProperties.apiKey)
+            .apiSecret(vonageProperties.secret)
 
-        if (nexmoProperties.privateKeyContents.isNotBlank()) {
-            builder.privateKeyContents(nexmoProperties.privateKeyContents)
+        if (vonageProperties.privateKeyContents.isNotBlank()) {
+            builder.privateKeyContents(vonageProperties.privateKeyContents)
         }
 
-        if (nexmoProperties.privateKeyPath.isNotBlank()) {
-            builder.privateKeyPath(nexmoProperties.privateKeyPath)
+        if (vonageProperties.privateKeyPath.isNotBlank()) {
+            builder.privateKeyPath(vonageProperties.privateKeyPath)
         }
 
-        if (nexmoProperties.applicationId.isNotBlank()) {
-            builder.applicationId(nexmoProperties.applicationId)
+        if (vonageProperties.applicationId.isNotBlank()) {
+            builder.applicationId(vonageProperties.applicationId)
         }
 
-        if (nexmoProperties.signature.isNotBlank()) {
-            builder.signatureSecret(nexmoProperties.signature)
+        if (vonageProperties.signature.isNotBlank()) {
+            builder.signatureSecret(vonageProperties.signature)
         }
 
         return builder
@@ -82,77 +82,77 @@ open class NexmoAutoConfiguration(
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun vonageClient(builder: VonageClient.Builder): VonageClient = builder.build()
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun accountClient(vonageClient: VonageClient): AccountClient = vonageClient.accountClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun applicationClient(vonageClient: VonageClient): ApplicationClient = vonageClient.applicationClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun conversionClient(vonageClient: VonageClient): ConversionClient = vonageClient.conversionClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun insightClient(vonageClient: VonageClient): InsightClient = vonageClient.insightClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun numbersClient(vonageClient: VonageClient): NumbersClient = vonageClient.numbersClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun redactClient(vonageClient: VonageClient): RedactClient = vonageClient.redactClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun smsClient(vonageClient: VonageClient): SmsClient = vonageClient.smsClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun snsClient(vonageClient: VonageClient): SnsClient = vonageClient.snsClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun verifyClient(vonageClient: VonageClient): VerifyClient = vonageClient.verifyClient
 
     @Bean
     @ConditionalOnMissingBean
-    @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret", "application-id"])
+    @ConditionalOnProperty(prefix = "vonage.creds", value = ["api-key", "secret", "application-id"])
     @Lazy
     @NotNull
     open fun voiceClient(vonageClient: VonageClient): VoiceClient = vonageClient.voiceClient

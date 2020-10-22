@@ -19,34 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 
-@ConfigurationProperties(prefix = "nexmo.creds")
-data class NexmoCredentialsProperties(
+@ConfigurationProperties(prefix = "vonage.creds")
+data class VonageCredentialsProperties(
     /**
-     * Nexmo API Key
+     * Vonage API Key
      */
     var apiKey: String = "",
     /**
-     * Nexmo API Secret
+     * Vonage API Secret
      */
     var secret: String = "",
     /**
-     * Nexmo Application ID
+     * Vonage Application ID
      */
     var applicationId: String = "",
     /**
-     * The String path to your Nexmo Private Key
+     * The String path to your Vonage Private Key
      */
     var privateKeyPath: String = "",
     /**
-     * The contents of you Nexmo Private Key
+     * The contents of you Vonage Private Key
      */
     var privateKeyContents: String = "",
     /**
-     * Nexmo Signature Secret
+     * Vonage Signature Secret
      */
     var signature: String = ""
 )

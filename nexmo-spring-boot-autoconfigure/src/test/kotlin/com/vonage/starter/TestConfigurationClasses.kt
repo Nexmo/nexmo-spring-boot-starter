@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
 import com.vonage.client.HttpConfig
 import com.vonage.client.VonageClient

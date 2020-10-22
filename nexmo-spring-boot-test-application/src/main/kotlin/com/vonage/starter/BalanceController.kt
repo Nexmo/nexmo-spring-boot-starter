@@ -19,17 +19,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.context.annotation.Configuration
+import com.vonage.client.VonageClient
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RestController
 
-@Configuration
-@SpringBootApplication
-open class NexmoSpringBootTestApplication {
-}
-
-fun main(args: Array<String>) {
-    SpringApplication.run(NexmoSpringBootTestApplication::class.java, *args)
+@RestController
+class BalanceController(
+    val vonageClient: VonageClient
+) {
+    @GetMapping("balance")
+    fun get(): Double {
+        return vonageClient.accountClient.balance.value
+    }
 }

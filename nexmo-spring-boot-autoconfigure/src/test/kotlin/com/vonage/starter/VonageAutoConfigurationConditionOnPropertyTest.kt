@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2019 Nexmo Inc
+ * Copyright (c) 2011-2019 Vonage Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
 import com.vonage.client.VonageClient
 import com.vonage.client.account.AccountClient
@@ -38,33 +38,33 @@ import org.springframework.boot.autoconfigure.AutoConfigurations
 import org.springframework.boot.test.context.runner.ApplicationContextRunner
 import kotlin.test.assertNotNull
 
-class NexmoAutoConfigurationConditionOnPropertyTest {
+class VonageAutoConfigurationConditionOnPropertyTest {
     val contextRunner = ApplicationContextRunner().withConfiguration(
-        AutoConfigurations.of(NexmoAutoConfiguration::class.java)
+        AutoConfigurations.of(VonageAutoConfiguration::class.java)
     )
 
     @Test
-    fun `when api key is missing nexmo builder is not registered`() {
+    fun `when api key is missing vonage builder is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(VonageClient.Builder::class.java)
         }
     }
 
     @Test
-    fun `when api secret is missing nexmo builder is not registered`() {
+    fun `when api secret is missing vonage builder is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(VonageClient.Builder::class.java)
         }
     }
 
     @Test
-    fun `when api key and secret exist nexmo builder is registered`() {
+    fun `when api key and secret exist vonage builder is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             assertNotNull(it.getBean(VonageClient.Builder::class.java))
@@ -72,27 +72,27 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     }
 
     @Test
-    fun `when api key is missing nexmo client is not registered`() {
+    fun `when api key is missing vonage client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(VonageClient::class.java)
         }
     }
 
     @Test
-    fun `when api secret is missing nexmo client is not registered`() {
+    fun `when api secret is missing vonage client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(VonageClient::class.java)
         }
     }
 
     @Test
-    fun `when api key and secret exist nexmo client is registered`() {
+    fun `when api key and secret exist vonage client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(VonageClient::class.java)
             assertNotNull(it.getBean(VonageClient::class.java))
@@ -102,7 +102,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing account client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(AccountClient::class.java)
         }
@@ -111,7 +111,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing account client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(AccountClient::class.java)
         }
@@ -120,7 +120,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist account client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(AccountClient::class.java)
             assertNotNull(it.getBean(AccountClient::class.java))
@@ -130,7 +130,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing application client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(ApplicationClient::class.java)
         }
@@ -139,7 +139,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing application client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(ApplicationClient::class.java)
         }
@@ -148,7 +148,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist application client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(ApplicationClient::class.java)
             assertNotNull(it.getBean(ApplicationClient::class.java))
@@ -158,7 +158,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing conversion client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(ConversionClient::class.java)
         }
@@ -167,7 +167,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing conversion client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(ConversionClient::class.java)
         }
@@ -176,7 +176,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist conversion client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(ConversionClient::class.java)
             assertNotNull(it.getBean(ConversionClient::class.java))
@@ -186,7 +186,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing insight client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(InsightClient::class.java)
         }
@@ -195,7 +195,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing insight client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(InsightClient::class.java)
         }
@@ -204,7 +204,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist insight client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(InsightClient::class.java)
             assertNotNull(it.getBean(InsightClient::class.java))
@@ -214,7 +214,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing numbers client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(NumbersClient::class.java)
         }
@@ -223,7 +223,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing numbers client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(NumbersClient::class.java)
         }
@@ -232,7 +232,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist numbers client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(NumbersClient::class.java)
             assertNotNull(it.getBean(NumbersClient::class.java))
@@ -242,7 +242,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing redact client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(RedactClient::class.java)
         }
@@ -251,7 +251,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing redact client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(RedactClient::class.java)
         }
@@ -260,7 +260,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist redact client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(RedactClient::class.java)
             assertNotNull(it.getBean(RedactClient::class.java))
@@ -270,7 +270,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing sms client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(SmsClient::class.java)
         }
@@ -279,7 +279,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing sms client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(SmsClient::class.java)
         }
@@ -288,7 +288,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist sms client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(SmsClient::class.java)
             assertNotNull(it.getBean(SmsClient::class.java))
@@ -298,7 +298,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing sns client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(SnsClient::class.java)
         }
@@ -307,7 +307,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing sns client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(SnsClient::class.java)
         }
@@ -316,7 +316,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist sns client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(SnsClient::class.java)
             assertNotNull(it.getBean(SnsClient::class.java))
@@ -326,7 +326,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing verify client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret"
+            "vonage.creds.secret=secret"
         ).run {
             assertThat(it).doesNotHaveBean(VerifyClient::class.java)
         }
@@ -335,7 +335,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing verify client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key"
+            "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(VerifyClient::class.java)
         }
@@ -344,7 +344,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret exist verify client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).hasSingleBean(VerifyClient::class.java)
             assertNotNull(it.getBean(VerifyClient::class.java))
@@ -354,7 +354,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key is missing voice client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.application-id=id"
+            "vonage.creds.secret=secret", "vonage.creds.application-id=id"
         ).run {
             assertThat(it).doesNotHaveBean(VoiceClient::class.java)
         }
@@ -363,7 +363,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api secret is missing voice client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=key", "nexmo.creds.application-id=id"
+            "vonage.creds.api-key=key", "vonage.creds.application-id=id"
         ).run {
             assertThat(it).doesNotHaveBean(VoiceClient::class.java)
         }
@@ -372,7 +372,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when application id is missing voice client is not registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key"
         ).run {
             assertThat(it).doesNotHaveBean(VoiceClient::class.java)
         }
@@ -381,7 +381,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
     @Test
     fun `when api key and secret and private key and application id exists voice client is registered`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.secret=secret", "nexmo.creds.api-key=key", "nexmo.creds.application-id=id", "nexmo.creds.private-key-path=src/test/resources/testing.key"
+            "vonage.creds.secret=secret", "vonage.creds.api-key=key", "vonage.creds.application-id=id", "vonage.creds.private-key-path=src/test/resources/testing.key"
         ).run {
             assertThat(it).hasSingleBean(VoiceClient::class.java)
             assertNotNull(it.getBean(VoiceClient::class.java))
