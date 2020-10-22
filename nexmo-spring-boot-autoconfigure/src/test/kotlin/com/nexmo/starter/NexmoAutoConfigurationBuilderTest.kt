@@ -21,7 +21,7 @@
  */
 package com.nexmo.starter
 
-import com.nexmo.client.NexmoClient
+import com.vonage.client.VonageClient
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -45,9 +45,9 @@ class NexmoAutoConfigurationBuilderTest {
             "nexmo.creds.api-key=api-key",
             "nexmo.creds.secret=secret"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val apiKey = ReflectionTestUtils.getField(builder, "apiKey") as String
             val secret = ReflectionTestUtils.getField(builder, "apiSecret") as String
 
@@ -63,9 +63,9 @@ class NexmoAutoConfigurationBuilderTest {
             "nexmo.creds.secret=secret",
             "nexmo.creds.application-id=app-id"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val appId = ReflectionTestUtils.getField(builder, "applicationId") as String
 
             assertEquals("app-id", appId)
@@ -80,9 +80,9 @@ class NexmoAutoConfigurationBuilderTest {
             "nexmo.creds.private-key-path=src/test/resources/testing.key",
             "nexmo.creds.private-key-contents=${keyContents}"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            it.getBean("nexmoBuilder")
+            it.getBean("vonageBuilder")
         }
     }
 
@@ -93,9 +93,9 @@ class NexmoAutoConfigurationBuilderTest {
             "nexmo.creds.secret=secret",
             "nexmo.creds.private-key-contents=${keyContents}"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val builderKeyContents = ReflectionTestUtils.getField(builder, "privateKeyContents") as ByteArray
 
             assertEquals(keyContents, builderKeyContents.toString(Charset.forName("UTF-8")))
@@ -109,9 +109,9 @@ class NexmoAutoConfigurationBuilderTest {
             "nexmo.creds.secret=secret",
             "nexmo.creds.private-key-path=src/test/resources/testing.key"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val builderKeyContents = ReflectionTestUtils.getField(builder, "privateKeyContents") as ByteArray
 
             assertEquals(keyContents, builderKeyContents.toString(Charset.forName("UTF-8")))
@@ -125,9 +125,9 @@ class NexmoAutoConfigurationBuilderTest {
             "nexmo.creds.secret=secret",
             "nexmo.creds.signature=signature"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val signature = ReflectionTestUtils.getField(builder, "signatureSecret") as String
 
             assertEquals("signature", signature)

@@ -21,13 +21,13 @@
  */
 package com.nexmo.starter
 
-import com.nexmo.client.NexmoClient
+import com.vonage.client.VonageClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class BalanceController(
-    val nexmoClient: NexmoClient
+    val nexmoClient: VonageClient
 ) {
     @GetMapping("balance")
     fun get(): Double {
