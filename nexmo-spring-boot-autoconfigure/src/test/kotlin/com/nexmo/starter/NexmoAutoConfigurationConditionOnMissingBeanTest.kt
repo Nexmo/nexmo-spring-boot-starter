@@ -21,18 +21,18 @@
  */
 package com.nexmo.starter
 
-import com.nexmo.client.HttpWrapper
-import com.nexmo.client.NexmoClient
-import com.nexmo.client.account.AccountClient
-import com.nexmo.client.application.ApplicationClient
-import com.nexmo.client.conversion.ConversionClient
-import com.nexmo.client.insight.InsightClient
-import com.nexmo.client.numbers.NumbersClient
-import com.nexmo.client.redact.RedactClient
-import com.nexmo.client.sms.SmsClient
-import com.nexmo.client.sns.SnsClient
-import com.nexmo.client.verify.VerifyClient
-import com.nexmo.client.voice.VoiceClient
+import com.vonage.client.HttpWrapper
+import com.vonage.client.VonageClient
+import com.vonage.client.account.AccountClient
+import com.vonage.client.application.ApplicationClient
+import com.vonage.client.conversion.ConversionClient
+import com.vonage.client.insight.InsightClient
+import com.vonage.client.numbers.NumbersClient
+import com.vonage.client.redact.RedactClient
+import com.vonage.client.sms.SmsClient
+import com.vonage.client.sns.SnsClient
+import com.vonage.client.verify.VerifyClient
+import com.vonage.client.voice.VoiceClient
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -48,12 +48,12 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
     @Test
     fun `when user defines a builder then only that builder is in the container`() {
         contextRunner.withUserConfiguration(
-            WithNexmoClientBuilder::class.java
+            WithVonageClientBuilder::class.java
         ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
-            assertThat(it).doesNotHaveBean("nexmoBuilder")
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
+            assertThat(it).doesNotHaveBean("vonageBuilder")
             assertThat(it).hasBean("testBuilder")
 
         }
@@ -62,13 +62,13 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
     @Test
     fun `when user defines a nexmo client then only that client is in the container`() {
         contextRunner.withUserConfiguration(
-            WithNexmoClient::class.java
+            WithVonageClient::class.java
         ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient::class.java)
-            assertThat(it).doesNotHaveBean("nexmoClient")
-            assertThat(it).hasBean("testNexmoClient")
+            assertThat(it).hasSingleBean(VonageClient::class.java)
+            assertThat(it).doesNotHaveBean("VonageClient")
+            assertThat(it).hasBean("testVonageClient")
 
         }
     }
@@ -216,11 +216,11 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
     @Test
     fun `when user defines a builder then that builder is used to build the Nexmo Client`() {
         contextRunner.withUserConfiguration(
-            WithNexmoClientBuilderHavingCustomBaseUri::class.java
+            WithVonageClientBuilderHavingCustomBaseUri::class.java
         ).withPropertyValues(
             "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
         ).run {
-            val client = it.getBean(NexmoClient::class.java)
+            val client = it.getBean(VonageClient::class.java)
             val wrapper = ReflectionTestUtils.getField(client, "httpWrapper") as HttpWrapper
 
             assertEquals("https://example.com", wrapper.httpConfig.apiBaseUri)

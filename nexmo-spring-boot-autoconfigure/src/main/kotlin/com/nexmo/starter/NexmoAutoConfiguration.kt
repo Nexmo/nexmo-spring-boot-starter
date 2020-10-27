@@ -21,17 +21,17 @@
  */
 package com.nexmo.starter
 
-import com.nexmo.client.NexmoClient
-import com.nexmo.client.account.AccountClient
-import com.nexmo.client.application.ApplicationClient
-import com.nexmo.client.conversion.ConversionClient
-import com.nexmo.client.insight.InsightClient
-import com.nexmo.client.numbers.NumbersClient
-import com.nexmo.client.redact.RedactClient
-import com.nexmo.client.sms.SmsClient
-import com.nexmo.client.sns.SnsClient
-import com.nexmo.client.verify.VerifyClient
-import com.nexmo.client.voice.VoiceClient
+import com.vonage.client.VonageClient
+import com.vonage.client.account.AccountClient
+import com.vonage.client.application.ApplicationClient
+import com.vonage.client.conversion.ConversionClient
+import com.vonage.client.insight.InsightClient
+import com.vonage.client.numbers.NumbersClient
+import com.vonage.client.redact.RedactClient
+import com.vonage.client.sms.SmsClient
+import com.vonage.client.sns.SnsClient
+import com.vonage.client.verify.VerifyClient
+import com.vonage.client.voice.VoiceClient
 import org.jetbrains.annotations.NotNull
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
@@ -42,7 +42,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Lazy
 
 @Configuration
-@ConditionalOnClass(NexmoClient::class)
+@ConditionalOnClass(VonageClient::class)
 @EnableConfigurationProperties(NexmoCredentialsProperties::class)
 open class NexmoAutoConfiguration(
     private val nexmoProperties: NexmoCredentialsProperties
@@ -52,12 +52,12 @@ open class NexmoAutoConfiguration(
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun nexmoBuilder(): NexmoClient.Builder {
+    open fun vonageBuilder(): VonageClient.Builder {
         if (nexmoProperties.privateKeyContents.isNotBlank() && nexmoProperties.privateKeyPath.isNotBlank()) {
             throw IllegalArgumentException("Found both private key path and private key contents. Only one option can be used at a time.")
         }
 
-        val builder = NexmoClient.builder()
+        val builder = VonageClient.builder()
             .apiKey(nexmoProperties.apiKey)
             .apiSecret(nexmoProperties.secret)
 
@@ -85,75 +85,75 @@ open class NexmoAutoConfiguration(
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun nexmoClient(builder: NexmoClient.Builder): NexmoClient = builder.build()
+    open fun vonageClient(builder: VonageClient.Builder): VonageClient = builder.build()
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun accountClient(nexmoClient: NexmoClient): AccountClient = nexmoClient.accountClient
+    open fun accountClient(vonageClient: VonageClient): AccountClient = vonageClient.accountClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun applicationClient(nexmoClient: NexmoClient): ApplicationClient = nexmoClient.applicationClient
+    open fun applicationClient(vonageClient: VonageClient): ApplicationClient = vonageClient.applicationClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun conversionClient(nexmoClient: NexmoClient): ConversionClient = nexmoClient.conversionClient
+    open fun conversionClient(vonageClient: VonageClient): ConversionClient = vonageClient.conversionClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun insightClient(nexmoClient: NexmoClient): InsightClient = nexmoClient.insightClient
+    open fun insightClient(vonageClient: VonageClient): InsightClient = vonageClient.insightClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun numbersClient(nexmoClient: NexmoClient): NumbersClient = nexmoClient.numbersClient
+    open fun numbersClient(vonageClient: VonageClient): NumbersClient = vonageClient.numbersClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun redactClient(nexmoClient: NexmoClient): RedactClient = nexmoClient.redactClient
+    open fun redactClient(vonageClient: VonageClient): RedactClient = vonageClient.redactClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun smsClient(nexmoClient: NexmoClient): SmsClient = nexmoClient.smsClient
+    open fun smsClient(vonageClient: VonageClient): SmsClient = vonageClient.smsClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun snsClient(nexmoClient: NexmoClient): SnsClient = nexmoClient.snsClient
+    open fun snsClient(vonageClient: VonageClient): SnsClient = vonageClient.snsClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
-    open fun verifyClient(nexmoClient: NexmoClient): VerifyClient = nexmoClient.verifyClient
+    open fun verifyClient(vonageClient: VonageClient): VerifyClient = vonageClient.verifyClient
 
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret", "application-id"])
     @Lazy
     @NotNull
-    open fun voiceClient(nexmoClient: NexmoClient): VoiceClient = nexmoClient.voiceClient
+    open fun voiceClient(vonageClient: VonageClient): VoiceClient = vonageClient.voiceClient
 }

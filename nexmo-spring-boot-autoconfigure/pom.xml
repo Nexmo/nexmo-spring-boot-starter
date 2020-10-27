@@ -65,9 +65,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.nexmo</groupId>
+            <groupId>com.vonage</groupId>
             <artifactId>client</artifactId>
-            <version>${nexmo.version}</version>
+            <version>${vonage.version}</version>
             <optional>true</optional>
         </dependency>
 

@@ -127,4 +127,7 @@ Bringing in older versions of the supported Nexmo Client, may result in some unf
 | v1.0.0 | v4.3.0 |
 | v1.0.1 | v4.3.1 |
 | v1.1.0 | v4.4.0 |
-| v2.0.0 | v5.3.0 |
+
+| Nexmo Spring Boot Starter | Vonage Java Client |
+|---|---|
+| v2.0.0 | v5.5.0 |

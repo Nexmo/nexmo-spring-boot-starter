@@ -44,7 +44,7 @@
         <dependency>
             <groupId>com.nexmo</groupId>
             <artifactId>client</artifactId>
-            <version>${nexmo.version}</version>
+            <version>${vonage.version}</version>
         </dependency>
         <dependency>
             <groupId>com.nexmo</groupId>
