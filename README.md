@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.vonage:nexmo-spring-boot-starter:2.2.0'
+    implementation 'com.vonage:nexmo-spring-boot-starter:2.0.0'
 }
 ```
 
@@ -33,7 +33,7 @@ For Maven:
 <dependency>
   <groupId>com.vonage</groupId>
   <artifactId>nexmo-spring-boot-starter</artifactId>
-  <version>2.2.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
@@ -127,9 +127,12 @@ For Maven:
 
 Bringing in older versions of the supported Nexmo Client, may result in some unforseen consequences and build errors. As a result here is a list of each version targeted by each version of the starter:
 
-| Nexmo Spring Boot Starter | Nexmo/Vonage Java Client |
+| Nexmo Spring Boot Starter | Nexmo Java Client |
 |---|---|
 | v1.0.0 | v4.3.0 |
 | v1.0.1 | v4.3.1 |
 | v1.1.0 | v4.4.0 |
-| v2.2.0 | v5.5.0 |
+
+| Vonage Spring Boot Starter | Vonage Java Client |
+|---|---|
+| v2.0.0 | v5.5.0 |

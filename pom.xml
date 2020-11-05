@@ -5,11 +5,11 @@
 
     <groupId>com.vonage</groupId>
     <artifactId>nexmo-starter</artifactId>
-    <version>2.2.0</version>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
 
-    <name>nexmo-starter</name>
-    <description>Top level project for Nexmo Spring Boot Starter.</description>
+    <name>vonage-starter</name>
+    <description>Top level project for Vonage Spring Boot Starter.</description>
     <url>https://github.com/nexmo/nexmo-spring-boot-starter</url>
     <scm>
         <connection>scm:git:git@github.com:Nexmo/nexmo-spring-boot-starter</connection>
