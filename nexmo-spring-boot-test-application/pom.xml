@@ -6,11 +6,11 @@
     <parent>
         <groupId>com.vonage</groupId>
         <artifactId>nexmo-starter</artifactId>
-        <version>2.2.0</version>
+        <version>2.0.0</version>
     </parent>
     <artifactId>nexmo-spring-boot-test-application</artifactId>
-    <version>2.2.0</version>
-    <name>nexmo-spring-boot-test-application</name>
+    <version>2.0.0</version>
+    <name>vonage-spring-boot-test-application</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.vonage</groupId>
             <artifactId>nexmo-spring-boot-starter</artifactId>
-            <version>2.2.0</version>
+            <version>2.0.0</version>
         </dependency>
 
         <dependency>
