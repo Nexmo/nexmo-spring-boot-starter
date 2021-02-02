@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2019 Nexmo Inc
+ * Copyright (c) 2011-2019 Vonage Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,20 +19,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
-import com.nexmo.client.HttpWrapper
-import com.nexmo.client.NexmoClient
-import com.nexmo.client.account.AccountClient
-import com.nexmo.client.applications.ApplicationClient
-import com.nexmo.client.conversion.ConversionClient
-import com.nexmo.client.insight.InsightClient
-import com.nexmo.client.numbers.NumbersClient
-import com.nexmo.client.redact.RedactClient
-import com.nexmo.client.sms.SmsClient
-import com.nexmo.client.sns.SnsClient
-import com.nexmo.client.verify.VerifyClient
-import com.nexmo.client.voice.VoiceClient
+import com.vonage.client.HttpWrapper
+import com.vonage.client.VonageClient
+import com.vonage.client.account.AccountClient
+import com.vonage.client.application.ApplicationClient
+import com.vonage.client.conversion.ConversionClient
+import com.vonage.client.insight.InsightClient
+import com.vonage.client.numbers.NumbersClient
+import com.vonage.client.redact.RedactClient
+import com.vonage.client.sms.SmsClient
+import com.vonage.client.sns.SnsClient
+import com.vonage.client.verify.VerifyClient
+import com.vonage.client.voice.VoiceClient
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -40,35 +40,35 @@ import org.springframework.boot.autoconfigure.AutoConfigurations
 import org.springframework.boot.test.context.runner.ApplicationContextRunner
 import org.springframework.test.util.ReflectionTestUtils
 
-class NexmoAutoConfigurationConditionOnMissingBeanTest {
+class VonageAutoConfigurationConditionOnMissingBeanTest {
     val contextRunner = ApplicationContextRunner().withConfiguration(
-        AutoConfigurations.of(NexmoAutoConfiguration::class.java)
+        AutoConfigurations.of(VonageAutoConfiguration::class.java)
     )
 
     @Test
     fun `when user defines a builder then only that builder is in the container`() {
         contextRunner.withUserConfiguration(
-            WithNexmoClientBuilder::class.java
+            WithVonageClientBuilder::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
-            assertThat(it).doesNotHaveBean("nexmoBuilder")
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
+            assertThat(it).doesNotHaveBean("vonageBuilder")
             assertThat(it).hasBean("testBuilder")
 
         }
     }
 
     @Test
-    fun `when user defines a nexmo client then only that client is in the container`() {
+    fun `when user defines a vonage client then only that client is in the container`() {
         contextRunner.withUserConfiguration(
-            WithNexmoClient::class.java
+            WithVonageClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient::class.java)
-            assertThat(it).doesNotHaveBean("nexmoClient")
-            assertThat(it).hasBean("testNexmoClient")
+            assertThat(it).hasSingleBean(VonageClient::class.java)
+            assertThat(it).doesNotHaveBean("vonageClient")
+            assertThat(it).hasBean("testVonageClient")
 
         }
     }
@@ -78,7 +78,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithAccountClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(AccountClient::class.java)
             assertThat(it).doesNotHaveBean("accountClient")
@@ -92,7 +92,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithApplicationClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(ApplicationClient::class.java)
             assertThat(it).doesNotHaveBean("applicationClient")
@@ -106,7 +106,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithConversionClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(ConversionClient::class.java)
             assertThat(it).doesNotHaveBean("conversionClient")
@@ -120,7 +120,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithInsightClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(InsightClient::class.java)
             assertThat(it).doesNotHaveBean("insightClient")
@@ -134,7 +134,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithNumbersClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(NumbersClient::class.java)
             assertThat(it).doesNotHaveBean("numbersClient")
@@ -148,7 +148,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithRedactClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(RedactClient::class.java)
             assertThat(it).doesNotHaveBean("redactClient")
@@ -162,7 +162,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithSmsClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(SmsClient::class.java)
             assertThat(it).doesNotHaveBean("smsClient")
@@ -176,7 +176,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithSnsClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(SnsClient::class.java)
             assertThat(it).doesNotHaveBean("snsClient")
@@ -190,7 +190,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithVerifyClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
             assertThat(it).hasSingleBean(VerifyClient::class.java)
             assertThat(it).doesNotHaveBean("verifyClient")
@@ -204,7 +204,7 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
         contextRunner.withUserConfiguration(
             WithVoiceClient::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret", "nexmo.creds.application-id=id"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret", "vonage.creds.application-id=id"
         ).run {
             assertThat(it).hasSingleBean(VoiceClient::class.java)
             assertThat(it).doesNotHaveBean("voiceClient")
@@ -214,13 +214,13 @@ class NexmoAutoConfigurationConditionOnMissingBeanTest {
     }
 
     @Test
-    fun `when user defines a builder then that builder is used to build the Nexmo Client`() {
+    fun `when user defines a builder then that builder is used to build the Vonage Client`() {
         contextRunner.withUserConfiguration(
-            WithNexmoClientBuilderHavingCustomBaseUri::class.java
+            WithVonageClientBuilderHavingCustomBaseUri::class.java
         ).withPropertyValues(
-            "nexmo.creds.api-key=api-key", "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key", "vonage.creds.secret=secret"
         ).run {
-            val client = it.getBean(NexmoClient::class.java)
+            val client = it.getBean(VonageClient::class.java)
             val wrapper = ReflectionTestUtils.getField(client, "httpWrapper") as HttpWrapper
 
             assertEquals("https://example.com", wrapper.httpConfig.apiBaseUri)

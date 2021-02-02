@@ -19,18 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
-import com.nexmo.client.NexmoClient
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.boot.context.properties.ConfigurationProperties
 
-@RestController
-class BalanceController(
-    val nexmoClient: NexmoClient
-) {
-    @GetMapping("balance")
-    fun get(): Double {
-        return nexmoClient.accountClient.balance.value
-    }
-}
+@ConfigurationProperties(prefix = "vonage.creds")
+data class VonageCredentialsProperties(
+    /**
+     * Vonage API Key
+     */
+    var apiKey: String = "",
+    /**
+     * Vonage API Secret
+     */
+    var secret: String = "",
+    /**
+     * Vonage Application ID
+     */
+    var applicationId: String = "",
+    /**
+     * The String path to your Vonage Private Key
+     */
+    var privateKeyPath: String = "",
+    /**
+     * The contents of you Vonage Private Key
+     */
+    var privateKeyContents: String = "",
+    /**
+     * Vonage Signature Secret
+     */
+    var signature: String = ""
+)

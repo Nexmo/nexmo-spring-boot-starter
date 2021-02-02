@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2019 Nexmo Inc
+ * Copyright (c) 2011-2019 Vonage Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,9 +19,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
-import com.nexmo.client.NexmoClient
+import com.vonage.client.VonageClient
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -32,22 +32,22 @@ import org.springframework.test.util.ReflectionTestUtils
 import java.io.File
 import java.nio.charset.Charset
 
-class NexmoAutoConfigurationBuilderTest {
+class VonageAutoConfigurationBuilderTest {
     val keyContents = File("src/test/resources/testing.key").readText()
 
     val contextRunner = ApplicationContextRunner().withConfiguration(
-        AutoConfigurations.of(NexmoAutoConfiguration::class.java)
+        AutoConfigurations.of(VonageAutoConfiguration::class.java)
     )
 
     @Test
     fun `when api key and secret are defined then builder has api key and secret`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=api-key",
-            "nexmo.creds.secret=secret"
+            "vonage.creds.api-key=api-key",
+            "vonage.creds.secret=secret"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val apiKey = ReflectionTestUtils.getField(builder, "apiKey") as String
             val secret = ReflectionTestUtils.getField(builder, "apiSecret") as String
 
@@ -59,13 +59,13 @@ class NexmoAutoConfigurationBuilderTest {
     @Test
     fun `when application id is defined then builder has application id`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=api-key",
-            "nexmo.creds.secret=secret",
-            "nexmo.creds.application-id=app-id"
+            "vonage.creds.api-key=api-key",
+            "vonage.creds.secret=secret",
+            "vonage.creds.application-id=app-id"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val appId = ReflectionTestUtils.getField(builder, "applicationId") as String
 
             assertEquals("app-id", appId)
@@ -75,27 +75,27 @@ class NexmoAutoConfigurationBuilderTest {
     @Test(expected = BeanCreationException::class)
     fun `when private key contents and private key path are both defined then an exception is thrown`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=api-key",
-            "nexmo.creds.secret=secret",
-            "nexmo.creds.private-key-path=src/test/resources/testing.key",
-            "nexmo.creds.private-key-contents=${keyContents}"
+            "vonage.creds.api-key=api-key",
+            "vonage.creds.secret=secret",
+            "vonage.creds.private-key-path=src/test/resources/testing.key",
+            "vonage.creds.private-key-contents=${keyContents}"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            it.getBean("nexmoBuilder")
+            it.getBean("vonageBuilder")
         }
     }
 
     @Test
     fun `when private key contents are defined then builder has private key contents`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=api-key",
-            "nexmo.creds.secret=secret",
-            "nexmo.creds.private-key-contents=${keyContents}"
+            "vonage.creds.api-key=api-key",
+            "vonage.creds.secret=secret",
+            "vonage.creds.private-key-contents=${keyContents}"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val builderKeyContents = ReflectionTestUtils.getField(builder, "privateKeyContents") as ByteArray
 
             assertEquals(keyContents, builderKeyContents.toString(Charset.forName("UTF-8")))
@@ -105,13 +105,13 @@ class NexmoAutoConfigurationBuilderTest {
     @Test
     fun `when private key path is defined then builder has private key contents`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=api-key",
-            "nexmo.creds.secret=secret",
-            "nexmo.creds.private-key-path=src/test/resources/testing.key"
+            "vonage.creds.api-key=api-key",
+            "vonage.creds.secret=secret",
+            "vonage.creds.private-key-path=src/test/resources/testing.key"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val builderKeyContents = ReflectionTestUtils.getField(builder, "privateKeyContents") as ByteArray
 
             assertEquals(keyContents, builderKeyContents.toString(Charset.forName("UTF-8")))
@@ -121,13 +121,13 @@ class NexmoAutoConfigurationBuilderTest {
     @Test
     fun `when signature secret is defined then builder has signature secret`() {
         contextRunner.withPropertyValues(
-            "nexmo.creds.api-key=api-key",
-            "nexmo.creds.secret=secret",
-            "nexmo.creds.signature=signature"
+            "vonage.creds.api-key=api-key",
+            "vonage.creds.secret=secret",
+            "vonage.creds.signature=signature"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
             // Since the bean is @Lazy, it needs to be requested.
-            val builder = it.getBean("nexmoBuilder")
+            val builder = it.getBean("vonageBuilder")
             val signature = ReflectionTestUtils.getField(builder, "signatureSecret") as String
 
             assertEquals("signature", signature)

@@ -19,91 +19,91 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.starter
+package com.vonage.starter
 
-import com.nexmo.client.HttpConfig
-import com.nexmo.client.NexmoClient
+import com.vonage.client.HttpConfig
+import com.vonage.client.VonageClient
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-open class WithNexmoClientBuilder {
+open class WithVonageClientBuilder {
     @Bean(name = ["testBuilder"])
-    open fun builder(): NexmoClient.Builder {
-        return NexmoClient.builder()
+    open fun builder(): VonageClient.Builder {
+        return VonageClient.builder()
     }
 }
 
 @Configuration
-open class WithNexmoClientBuilderHavingCustomBaseUri {
+open class WithVonageClientBuilderHavingCustomBaseUri {
     @Bean(name = ["testBuilder"])
-    open fun builder(): NexmoClient.Builder {
-        return NexmoClient.builder().httpConfig(HttpConfig.builder().baseUri("https://example.com").build())
+    open fun builder(): VonageClient.Builder {
+        return VonageClient.builder().httpConfig(HttpConfig.builder().baseUri("https://example.com").build())
     }
 }
 
 @Configuration
-open class WithNexmoClient {
-    @Bean(name = ["testNexmoClient"])
-    open fun client() = NexmoClient.builder().build()
+open class WithVonageClient {
+    @Bean(name = ["testVonageClient"])
+    open fun client() = VonageClient.builder().build()
 }
 
 @Configuration
 open class WithAccountClient {
     @Bean(name = ["testAccountClient"])
-    open fun builder() = NexmoClient.builder().build().accountClient
+    open fun builder() = VonageClient.builder().build().accountClient
 }
 
 @Configuration
 open class WithApplicationClient {
     @Bean(name = ["testApplicationClient"])
-    open fun builder() = NexmoClient.builder().build().applicationClient
+    open fun builder() = VonageClient.builder().build().applicationClient
 }
 
 @Configuration
 open class WithConversionClient {
     @Bean(name = ["testConversionClient"])
-    open fun builder() = NexmoClient.builder().build().conversionClient
+    open fun builder() = VonageClient.builder().build().conversionClient
 }
 
 @Configuration
 open class WithInsightClient {
     @Bean(name = ["testInsightClient"])
-    open fun builder() = NexmoClient.builder().build().insightClient
+    open fun builder() = VonageClient.builder().build().insightClient
 }
 
 @Configuration
 open class WithNumbersClient {
     @Bean(name = ["testNumbersClient"])
-    open fun builder() = NexmoClient.builder().build().numbersClient
+    open fun builder() = VonageClient.builder().build().numbersClient
 }
 
 @Configuration
 open class WithRedactClient {
     @Bean(name = ["testRedactClient"])
-    open fun builder() = NexmoClient.builder().build().redactClient
+    open fun builder() = VonageClient.builder().build().redactClient
 }
 
 @Configuration
 open class WithSmsClient {
     @Bean(name = ["testSmsClient"])
-    open fun builder() = NexmoClient.builder().build().smsClient
+    open fun builder() = VonageClient.builder().build().smsClient
 }
 
 @Configuration
 open class WithSnsClient {
     @Bean(name = ["testSnsClient"])
-    open fun builder() = NexmoClient.builder().build().snsClient
+    open fun builder() = VonageClient.builder().build().snsClient
 }
 
 @Configuration
 open class WithVerifyClient {
     @Bean(name = ["testVerifyClient"])
-    open fun builder() = NexmoClient.builder().build().verifyClient
+    open fun builder() = VonageClient.builder().build().verifyClient
 }
 
 @Configuration
 open class WithVoiceClient {
     @Bean(name = ["testVoiceClient"])
-    open fun builder() = NexmoClient.builder().build().voiceClient
+    open fun builder() = VonageClient.builder().build().voiceClient
 }

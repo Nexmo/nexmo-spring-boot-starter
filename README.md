@@ -1,6 +1,6 @@
 # Nexmo Spring Boot Starter
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.nexmo/nexmo-spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.nexmo%22%20AND%20a:%22nexmo-spring-boot-starter%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.vonage/nexmo-spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.vonage%22%20AND%20a:%22nexmo-spring-boot-starter%22)
 [![Build Status](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter.svg?branch=master)](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter)
 [![codecov](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter)
 
@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.nexmo:nexmo-spring-boot-starter:1.1.0'
+    implementation 'com.vonage:nexmo-spring-boot-starter:2.0.0'
 }
 ```
 
@@ -31,9 +31,9 @@ For Maven:
 
 ```xml
 <dependency>
-  <groupId>com.nexmo</groupId>
+  <groupId>com.vonage</groupId>
   <artifactId>nexmo-spring-boot-starter</artifactId>
-  <version>1.1.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
@@ -90,8 +90,8 @@ For example, if you would like to customize the base URI that the library uses, 
 NexmoCredentialsProperties nexmoCredentialsProperties;
 
 @Bean
-public NexmoClient.Builder customNexmoBuilder() {
-    return NexmoClient.builder()
+public VonageClient.Builder customNexmoBuilder() {
+    return VonageClient.builder()
             .apiKey(nexmoCredentialsProperties.getApiKey())
             .apiSecret(nexmoCredentialsProperties.getSecret())
             .httpConfig(HttpConfig.builder().baseUri("https://example.com").build());
@@ -132,3 +132,7 @@ Bringing in older versions of the supported Nexmo Client, may result in some unf
 | v1.0.0 | v4.3.0 |
 | v1.0.1 | v4.3.1 |
 | v1.1.0 | v4.4.0 |
+
+| Vonage Spring Boot Starter | Vonage Java Client |
+|---|---|
+| v2.0.0 | v5.5.0 |
