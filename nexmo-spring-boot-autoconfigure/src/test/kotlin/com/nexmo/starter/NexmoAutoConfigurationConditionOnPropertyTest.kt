@@ -21,17 +21,17 @@
  */
 package com.nexmo.starter
 
-import com.nexmo.client.NexmoClient
-import com.nexmo.client.account.AccountClient
-import com.nexmo.client.applications.ApplicationClient
-import com.nexmo.client.conversion.ConversionClient
-import com.nexmo.client.insight.InsightClient
-import com.nexmo.client.numbers.NumbersClient
-import com.nexmo.client.redact.RedactClient
-import com.nexmo.client.sms.SmsClient
-import com.nexmo.client.sns.SnsClient
-import com.nexmo.client.verify.VerifyClient
-import com.nexmo.client.voice.VoiceClient
+import com.vonage.client.VonageClient
+import com.vonage.client.account.AccountClient
+import com.vonage.client.application.ApplicationClient
+import com.vonage.client.conversion.ConversionClient
+import com.vonage.client.insight.InsightClient
+import com.vonage.client.numbers.NumbersClient
+import com.vonage.client.redact.RedactClient
+import com.vonage.client.sms.SmsClient
+import com.vonage.client.sns.SnsClient
+import com.vonage.client.verify.VerifyClient
+import com.vonage.client.voice.VoiceClient
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.springframework.boot.autoconfigure.AutoConfigurations
@@ -48,7 +48,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
         contextRunner.withPropertyValues(
             "nexmo.creds.secret=secret"
         ).run {
-            assertThat(it).doesNotHaveBean(NexmoClient.Builder::class.java)
+            assertThat(it).doesNotHaveBean(VonageClient.Builder::class.java)
         }
     }
 
@@ -57,7 +57,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
         contextRunner.withPropertyValues(
             "nexmo.creds.api-key=key"
         ).run {
-            assertThat(it).doesNotHaveBean(NexmoClient.Builder::class.java)
+            assertThat(it).doesNotHaveBean(VonageClient.Builder::class.java)
         }
     }
 
@@ -66,8 +66,8 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
         contextRunner.withPropertyValues(
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient.Builder::class.java)
-            assertNotNull(it.getBean(NexmoClient.Builder::class.java))
+            assertThat(it).hasSingleBean(VonageClient.Builder::class.java)
+            assertNotNull(it.getBean(VonageClient.Builder::class.java))
         }
     }
 
@@ -76,7 +76,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
         contextRunner.withPropertyValues(
             "nexmo.creds.secret=secret"
         ).run {
-            assertThat(it).doesNotHaveBean(NexmoClient::class.java)
+            assertThat(it).doesNotHaveBean(VonageClient::class.java)
         }
     }
 
@@ -85,7 +85,7 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
         contextRunner.withPropertyValues(
             "nexmo.creds.api-key=key"
         ).run {
-            assertThat(it).doesNotHaveBean(NexmoClient::class.java)
+            assertThat(it).doesNotHaveBean(VonageClient::class.java)
         }
     }
 
@@ -94,8 +94,8 @@ class NexmoAutoConfigurationConditionOnPropertyTest {
         contextRunner.withPropertyValues(
             "nexmo.creds.secret=secret", "nexmo.creds.api-key=key"
         ).run {
-            assertThat(it).hasSingleBean(NexmoClient::class.java)
-            assertNotNull(it.getBean(NexmoClient::class.java))
+            assertThat(it).hasSingleBean(VonageClient::class.java)
+            assertNotNull(it.getBean(VonageClient::class.java))
         }
     }
 
