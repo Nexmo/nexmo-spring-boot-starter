@@ -99,6 +99,41 @@ public NexmoClient.Builder customNexmoBuilder() {
 ```
 > Note that you must include your credentials as shown in this example. This builder completely replaces the automatically configured one.
 
+## Listen for Incoming Events
+
+The starter will register a few different routes for accepting webhooks from Nexmo. You can hook into these events by creating an event listener.
+
+To listen for incoming SMS events, for example:
+
+```java
+import com.nexmo.client.incoming.MessageEvent;
+import com.nexmo.starter.events.SmsMessageReceivedEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
+
+@Component
+class SmsEventListener {
+    @EventListener
+    public void onIncomingSms(SmsMessageReceivedEvent event) {
+        MessageEvent message = event.getMessage();
+    }
+}
+```
+
+By default, the SMS event webhook is configured on the `/webhooks/sms` path. This can be customized via the `application.properties`:
+
+```properties
+nexmo.webhooks.incoming-sms-endpoint=/foo/bar
+```
+
+This webhook will need to be configured in the [Nexmo Dashboard](https://dashboard.nexmo.com).
+
+You can also disable the webhook controllers:
+
+```properties
+nexmo.webhooks.disabled=true
+```
+
 ## Customize Nexmo Client Version
 
 By default, the Nexmo Spring Boot Starter will transitively define Nexmo Client to the latest version at its release. You can override this by adding a dependency on the Nexmo Client, bringing in `4.2.0` for example:

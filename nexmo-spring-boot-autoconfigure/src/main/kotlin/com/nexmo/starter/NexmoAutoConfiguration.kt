@@ -44,37 +44,35 @@ import org.springframework.context.annotation.Lazy
 @Configuration
 @ConditionalOnClass(NexmoClient::class)
 @EnableConfigurationProperties(NexmoCredentialsProperties::class)
-open class NexmoAutoConfiguration(
-    private val nexmoProperties: NexmoCredentialsProperties
-) {
+open class NexmoAutoConfiguration(private val nexmoCredentialsProperties: NexmoCredentialsProperties) {
     @Bean
     @ConditionalOnMissingBean
     @ConditionalOnProperty(prefix = "nexmo.creds", value = ["api-key", "secret"])
     @Lazy
     @NotNull
     open fun nexmoBuilder(): NexmoClient.Builder {
-        if (nexmoProperties.privateKeyContents.isNotBlank() && nexmoProperties.privateKeyPath.isNotBlank()) {
+        if (nexmoCredentialsProperties.privateKeyContents.isNotBlank() && nexmoCredentialsProperties.privateKeyPath.isNotBlank()) {
             throw IllegalArgumentException("Found both private key path and private key contents. Only one option can be used at a time.")
         }
 
         val builder = NexmoClient.builder()
-            .apiKey(nexmoProperties.apiKey)
-            .apiSecret(nexmoProperties.secret)
+            .apiKey(nexmoCredentialsProperties.apiKey)
+            .apiSecret(nexmoCredentialsProperties.secret)
 
-        if (nexmoProperties.privateKeyContents.isNotBlank()) {
-            builder.privateKeyContents(nexmoProperties.privateKeyContents)
+        if (nexmoCredentialsProperties.privateKeyContents.isNotBlank()) {
+            builder.privateKeyContents(nexmoCredentialsProperties.privateKeyContents)
         }
 
-        if (nexmoProperties.privateKeyPath.isNotBlank()) {
-            builder.privateKeyPath(nexmoProperties.privateKeyPath)
+        if (nexmoCredentialsProperties.privateKeyPath.isNotBlank()) {
+            builder.privateKeyPath(nexmoCredentialsProperties.privateKeyPath)
         }
 
-        if (nexmoProperties.applicationId.isNotBlank()) {
-            builder.applicationId(nexmoProperties.applicationId)
+        if (nexmoCredentialsProperties.applicationId.isNotBlank()) {
+            builder.applicationId(nexmoCredentialsProperties.applicationId)
         }
 
-        if (nexmoProperties.signature.isNotBlank()) {
-            builder.signatureSecret(nexmoProperties.signature)
+        if (nexmoCredentialsProperties.signature.isNotBlank()) {
+            builder.signatureSecret(nexmoCredentialsProperties.signature)
         }
 
         return builder
