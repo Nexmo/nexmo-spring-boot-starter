@@ -1,10 +1,19 @@
-# Nexmo Spring Boot Starter
+# ⚠️ This repository is no longer maintained.
+
+<img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
+
+**Please use [Vonage-Community/sample-serversdk-java-springboot](https://github.com/Vonage-Community/sample-serversdk-java-springboot) instead.**
+
+## Support Notice
+This is an archived repository. If you have any questions, feel free to reach out to us at devrel@vonage.com or through our [Community Slack](https://developer.vonage.com/community/slack).
+
+<hr />
+
+## Nexmo Spring Boot Starter
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.nexmo/nexmo-spring-boot-starter.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.nexmo%22%20AND%20a:%22nexmo-spring-boot-starter%22)
 [![Build Status](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter.svg?branch=main)](https://travis-ci.org/Nexmo/nexmo-spring-boot-starter)
 [![codecov](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter/branch/master/graph/badge.svg)](https://codecov.io/gh/Nexmo/nexmo-spring-boot-starter)
-
-<img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
 
 This Spring Boot Starter has been provided to help with integrating the [Nexmo Java SDK](https://github.com/Nexmo/nexmo-java) into your [Spring Boot](https://spring.io/projects/spring-boot) project.
 
@@ -13,7 +22,7 @@ This Spring Boot Starter has been provided to help with integrating the [Nexmo J
  * [Customizing the NexmoClient](#customizing-the-nexmoclient)
  * [Customize Nexmo Client Version](#customize-nexmo-client-version)
  
-## Installation
+### Installation
 
 For Gradle:
 
@@ -37,18 +46,18 @@ For Maven:
 </dependency>
 ```
 
-## Usage
+### Usage
 
 The Nexmo Spring Boot Starter will automatically configure instances of the `NexmoClient.Builder`, `NexmoClient`, and any of the other sub-clients (`AccountClient`, `VoiceClient`, etc..) once you have provided the required configuration values.
 
 * For help understanding our APIs, check out our [developer portal](https://developer.nexmo.com/).
 * There are also **many useful code samples** in our [nexmo/nexmo-java-code-snippets](https://github.com/Nexmo/nexmo-java-code-snippets) repository.
 
-### Configuration
+#### Configuration
 
 The following configuration values are used to configure the starter. Check out the [Application Property Files](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config-application-property-files) and [Externalized Configuration](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-external-config) reference in the Spring Boot documentation for how to provide configuration values.
 
-#### API Key and Secret Configuration
+##### API Key and Secret Configuration
 
 ```
 nexmo.creds.api-key=your-api-key
@@ -64,7 +73,7 @@ nexmo.creds.api-key=your-api-key
 nexmo.creds.signature=signature
 ```
 
-#### Application ID and Private Key Configuration
+##### Application ID and Private Key Configuration
 To gain access to the `VoiceClient` you will need to provide a [Nexmo Application ID]() and location or contents of a private key file associated with the Nexmo Application.
 
 Here is an example providing the path to the key:
@@ -79,7 +88,7 @@ nexmo.creds.application-id=application-id
 nexmo.creds.private-key-contents=contents-of-the-key
 ```
 
-### Customizing the `NexmoClient`
+#### Customizing the `NexmoClient`
 
 By default, the auto configuration will create a `NexmoClient.Builder` using the information provided in your `application.properties`, `application.yml`, or other external configuration source. However, when registering the `NexmoClient` and all of the other sub-clients, the auto configuration can opt to use a pre-registered `NexmoClient.Builder`.
 
@@ -99,7 +108,7 @@ public NexmoClient.Builder customNexmoBuilder() {
 ```
 > Note that you must include your credentials as shown in this example. This builder completely replaces the automatically configured one.
 
-## Customize Nexmo Client Version
+### Customize Nexmo Client Version
 
 By default, the Nexmo Spring Boot Starter will transitively define Nexmo Client to the latest version at its release. You can override this by adding a dependency on the Nexmo Client, bringing in `4.2.0` for example:
 
